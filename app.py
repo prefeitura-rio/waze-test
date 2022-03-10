@@ -50,7 +50,7 @@ road_cloasures = [
     dict(
         geometry="",
         starttime=pendulum.now().to_atom_string(),
-        endtime=pendulum.now().add(hours=1).to_atom_string(),
+        endtime=pendulum.now().to_atom_string(),
         alert_type="ROAD_CLOSED",
         alert_subtype="ROAD_CLOSED_HAZARD",
         description="Road closed due to a hazard",
