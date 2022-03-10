@@ -26,8 +26,8 @@ def fill_road_closure(
 
     return {
         "id": str(random.getrandbits(128))[:14],
-        "creationtime": pendulum.now().isoformat(),
-        "updatetime": pendulum.now().add(hours=1).isoformat(),
+        "creationtime": pendulum.now().to_atom_string(),
+        "updatetime": pendulum.now().add(hours=1).to_atom_string(),
         "description": description,
         "type": alert_type,
         "subtype": alert_subtype,
@@ -49,9 +49,9 @@ def fill_feed(road_closures):
 road_cloasures = [
     dict(
         geometry="",
-        starttime=pendulum.now().isoformat(),
-        endtime=pendulum.now().isoformat(),
-        alert_type="ROAD_CLOSURE",
+        starttime=pendulum.now().to_atom_string(),
+        endtime=pendulum.now().to_atom_string(),
+        alert_type="ROAD_CLOSED",
         alert_subtype="ROAD_CLOSED_HAZARD",
         description="Road closed due to a hazard",
         direction="BOTH_DIRECTIONS",
@@ -68,4 +68,4 @@ st.json(incidents)
 
 if st.button("Save New Feed"):
     print("saved")
-    json.dump(incidents, open("data/incidents.json", "w"))
+    json.dump(incidents, open("data/output/incidents.json", "w"))
